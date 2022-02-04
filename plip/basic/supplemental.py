@@ -399,7 +399,8 @@ def readmol(path, as_string=False):
         # Read molecules with single bond information
         if as_string:
             try:
-                mymol = pybel.readstring(sformat, path)
+                with open(path, 'r') as f:
+                    mymol = pybel.readstring(sformat, f.read())
             except IOError:
                 logger.error('no valid file format provided')
                 sys.exit(1)
